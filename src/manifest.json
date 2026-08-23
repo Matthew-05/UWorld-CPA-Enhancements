@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "UWorld Score vs Average",
   "version": "1.0.0",
-  "description": "Shows your UWorld percent correct beside the average percent correct when both are visible on the page.",
+  "description": "Compares your test-result score with the average percent correct for other UWorld users.",
   "content_scripts": [
     {
       "matches": [

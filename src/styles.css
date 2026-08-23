@@ -1,55 +1,71 @@
-#uworld-score-compare-panel {
-  position: fixed;
-  right: 18px;
-  bottom: 18px;
-  z-index: 2147483647;
-  width: min(330px, calc(100vw - 36px));
-  box-sizing: border-box;
-  padding: 14px 40px 14px 16px;
-  border: 1px solid rgba(0, 0, 0, 0.14);
-  border-left: 5px solid #2196f3;
-  border-radius: 10px;
-  background: #fff;
-  color: #313131;
-  font-family: "Open Sans", Arial, sans-serif;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+/* The peer marker is inserted directly into UWorld's existing score bar. */
+.test-results .score-stats:not(.question-performance) .score-bar {
+  position: relative;
+  overflow: visible;
 }
 
-#uworld-score-compare-panel.uwsc-above { border-left-color: #2db94d; }
-#uworld-score-compare-panel.uwsc-below { border-left-color: #e84c3d; }
-
-#uworld-score-compare-panel .uwsc-title {
-  margin-bottom: 5px;
-  font-size: 13px;
-  font-weight: 700;
-  color: #65656a;
-}
-
-#uworld-score-compare-panel .uwsc-values {
-  font-size: 17px;
-  font-weight: 700;
-  line-height: 1.35;
-}
-
-#uworld-score-compare-panel .uwsc-diff {
-  margin-top: 4px;
-  font-size: 13px;
-  line-height: 1.35;
-}
-
-#uworld-score-compare-panel .uwsc-close {
+#uworld-average-score-marker {
   position: absolute;
-  top: 6px;
-  right: 8px;
-  width: 30px;
-  height: 30px;
-  border: 0;
-  border-radius: 6px;
-  background: transparent;
-  color: #757575;
-  font: 22px/28px Arial, sans-serif;
-  cursor: pointer;
+  top: -5px;
+  bottom: -5px;
+  z-index: 3;
+  width: 0;
+  border-left: 3px solid #b75b08;
+  transform: translateX(-1px);
+  pointer-events: none;
 }
 
-#uworld-score-compare-panel .uwsc-close:hover { background: rgba(0, 0, 0, 0.06); }
-#uworld-score-compare-panel .uwsc-close:focus-visible { outline: 2px solid #2196f3; outline-offset: 1px; }
+#uworld-average-score-marker::before {
+  position: absolute;
+  top: -3px;
+  left: -5px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #b75b08;
+  box-shadow: 0 0 0 2px #fff;
+  content: "";
+}
+
+#uworld-inline-score-comparison {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 7px 0 2px;
+  color: #555e69;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+#uworld-inline-score-comparison .uwsc-average-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+#uworld-inline-score-comparison .uwsc-average-value i {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #b75b08;
+}
+
+#uworld-inline-score-comparison .uwsc-average-value strong {
+  color: #303842;
+  font-weight: 700;
+}
+
+#uworld-inline-score-comparison .uwsc-difference {
+  padding-left: 8px;
+  border-left: 1px solid rgba(55, 65, 75, 0.25);
+  font-weight: 700;
+}
+
+#uworld-inline-score-comparison.uwsc-above .uwsc-difference { color: #207a3d; }
+#uworld-inline-score-comparison.uwsc-below .uwsc-difference { color: #b23b35; }
