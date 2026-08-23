@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "UWorld Score vs Average",
+  "version": "1.0.0",
+  "description": "Shows your UWorld percent correct beside the average percent correct when both are visible on the page.",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://apps.uworld.com/*",
+        "https://*.uworld.com/*"
+      ],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

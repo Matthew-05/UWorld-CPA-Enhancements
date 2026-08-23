@@ -1,0 +1,55 @@
+#uworld-score-compare-panel {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 2147483647;
+  width: min(330px, calc(100vw - 36px));
+  box-sizing: border-box;
+  padding: 14px 40px 14px 16px;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-left: 5px solid #2196f3;
+  border-radius: 10px;
+  background: #fff;
+  color: #313131;
+  font-family: "Open Sans", Arial, sans-serif;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+}
+
+#uworld-score-compare-panel.uwsc-above { border-left-color: #2db94d; }
+#uworld-score-compare-panel.uwsc-below { border-left-color: #e84c3d; }
+
+#uworld-score-compare-panel .uwsc-title {
+  margin-bottom: 5px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #65656a;
+}
+
+#uworld-score-compare-panel .uwsc-values {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+#uworld-score-compare-panel .uwsc-diff {
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+#uworld-score-compare-panel .uwsc-close {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #757575;
+  font: 22px/28px Arial, sans-serif;
+  cursor: pointer;
+}
+
+#uworld-score-compare-panel .uwsc-close:hover { background: rgba(0, 0, 0, 0.06); }
+#uworld-score-compare-panel .uwsc-close:focus-visible { outline: 2px solid #2196f3; outline-offset: 1px; }
