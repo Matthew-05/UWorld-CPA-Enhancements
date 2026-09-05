@@ -2,15 +2,30 @@
   "manifest_version": 3,
   "name": "UWorld Score vs Average",
   "version": "1.0.0",
-  "description": "Compares your test-result score with the average percent correct for other UWorld users.",
+  "description": "Compares your test-result score with the average percent correct for other UWorld users, and restores Ctrl+F, text selection and copy.",
   "content_scripts": [
     {
       "matches": [
         "https://apps.uworld.com/*",
         "https://*.uworld.com/*"
       ],
-      "js": ["content.js"],
-      "css": ["styles.css"],
+      "js": [
+        "find-unblock.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "https://apps.uworld.com/*",
+        "https://*.uworld.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "styles.css"
+      ],
       "run_at": "document_idle"
     }
   ]
