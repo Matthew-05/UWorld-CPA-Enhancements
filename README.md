@@ -40,7 +40,11 @@ On `/performance/test/results/` pages, `content.js` reads the mean of the `% COR
 column and injects a marker into the existing *Points Scored* bar at that position. An inline
 caption below the bar shows the peer average and your difference. Your score comes from the
 `Points Scored` summary, with a fallback to the `Total Correct` / `Total Incorrect` /
-`Total Omitted` stats. It re-renders as the page changes.
+`Total Omitted` stats.
+
+Its colors come from UWorld's own theme variables (`--average-score-text`, `--score-bar-borderline`,
+`--success-text`, `--error-text-color`, etc.), so the marker and caption follow the app's light/dark
+mode. It re-renders as the page changes.
 
 ### Question review navigation colors
 
@@ -100,7 +104,6 @@ node src/content.test.cjs
 │   ├── popup.html/.css/.js
 │   ├── icons/
 │   └── content.test.cjs  # parser tests
-├── CHANGELOG.md
 ├── LICENSE
 └── README.md
 ```

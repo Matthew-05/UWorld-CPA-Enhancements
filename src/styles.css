@@ -10,7 +10,7 @@
   bottom: -5px;
   z-index: 3;
   width: 0;
-  border-left: 3px solid #b75b08;
+  border-left: 3px solid var(--score-bar-borderline, #e2820a);
   transform: translateX(-1px);
   pointer-events: none;
 }
@@ -22,11 +22,13 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #b75b08;
-  box-shadow: 0 0 0 2px #fff;
+  background: var(--score-bar-borderline, #e2820a);
+  box-shadow: 0 0 0 2px var(--white, #fff);
   content: "";
 }
 
+/* Colours come from UWorld's own theme variables (set on .theme-light /
+   .theme-dark) so the caption and marker track the app's light/dark mode. */
 #uworld-inline-score-comparison {
   display: flex;
   align-items: center;
@@ -35,7 +37,7 @@
   box-sizing: border-box;
   width: 100%;
   margin: 7px 0 2px;
-  color: #555e69;
+  color: var(--average-score-text, var(--font, #555e69));
   font-family: inherit;
   font-size: 12px;
   line-height: 1.35;
@@ -53,22 +55,22 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #b75b08;
+  background: var(--score-bar-borderline, #e2820a);
 }
 
 #uworld-inline-score-comparison .uwsc-average-value strong {
-  color: #303842;
+  color: var(--font, #303842);
   font-weight: 700;
 }
 
 #uworld-inline-score-comparison .uwsc-difference {
   padding-left: 8px;
-  border-left: 1px solid rgba(55, 65, 75, 0.25);
+  border-left: 1px solid var(--stats-border-color, rgba(55, 65, 75, 0.25));
   font-weight: 700;
 }
 
-#uworld-inline-score-comparison.uwsc-above .uwsc-difference { color: #207a3d; }
-#uworld-inline-score-comparison.uwsc-below .uwsc-difference { color: #b23b35; }
+#uworld-inline-score-comparison.uwsc-above .uwsc-difference { color: var(--success-text, #16a34a); }
+#uworld-inline-score-comparison.uwsc-below .uwsc-difference { color: var(--error-text-color, #dc2626); }
 
 /* Question review navigation colour-coded by result (Tutor mode). */
 .question-review-nav .question-sequence.uwrn-correct,
