@@ -27,6 +27,16 @@
         "styles.css"
       ],
       "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://apps.uworld.com/*",
+        "https://*.uworld.com/*"
+      ],
+      "js": [
+        "review-nav.js"
+      ],
+      "run_at": "document_idle"
     }
   ]
 }
