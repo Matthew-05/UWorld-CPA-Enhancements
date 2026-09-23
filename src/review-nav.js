@@ -103,20 +103,49 @@
 
   if (typeof document === 'undefined') return;
 
+  const FEATURE = 'featureReviewNav';
   let timer = null;
+  let observer = null;
+  let running = false;
+
   const schedule = () => {
     clearTimeout(timer);
     timer = setTimeout(render, 150);
   };
 
-  render();
+  const onNavigate = () => schedule();
 
-  new MutationObserver(schedule).observe(document.documentElement, {
-    childList: true,
-    subtree: true,
-    characterData: true
-  });
+  const start = () => {
+    if (running) return;
+    running = true;
+    render();
+    observer = new MutationObserver(schedule);
+    observer.observe(document.documentElement, {
+      childList: true,
+      subtree: true,
+      characterData: true
+    });
+    window.addEventListener('hashchange', onNavigate);
+    window.addEventListener('popstate', onNavigate);
+  };
 
-  window.addEventListener('hashchange', schedule);
-  window.addEventListener('popstate', schedule);
+  const stop = () => {
+    if (!running) return;
+    running = false;
+    clearTimeout(timer);
+    observer?.disconnect();
+    observer = null;
+    window.removeEventListener('hashchange', onNavigate);
+    window.removeEventListener('popstate', onNavigate);
+    for (const item of document.querySelectorAll(`${NAV_ROOT} ${ITEM}`)) {
+      item.classList.remove(...STATE_CLASSES);
+    }
+  };
+
+  const features = window.UWFeatures;
+  if (features && typeof features.watch === 'function') {
+    features.watch(FEATURE, (enabled) => (enabled ? start() : stop()));
+  } else {
+    start();
+  }
 })();

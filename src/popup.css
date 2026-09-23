@@ -1,0 +1,130 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 300px;
+  margin: 0;
+  padding: 14px 16px;
+  background: #1b1f24;
+  color: #e8ecf1;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-size: 13px;
+}
+
+header h1 {
+  margin: 0 0 2px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+header p {
+  margin: 0 0 12px;
+  color: #9aa4b0;
+  font-size: 12px;
+}
+
+.toggle {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  margin-bottom: 6px;
+  border: 1px solid #2c333c;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.toggle:hover {
+  background: #232930;
+  border-color: #3a444f;
+}
+
+.toggle input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.switch {
+  position: relative;
+  width: 34px;
+  height: 20px;
+  border-radius: 999px;
+  background: #3a444f;
+  transition: background-color 0.15s ease;
+}
+
+.switch::after {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  content: "";
+  transition: transform 0.15s ease;
+}
+
+.toggle input:checked + .switch {
+  background: #1c8a4e;
+}
+
+.toggle input:checked + .switch::after {
+  transform: translateX(14px);
+}
+
+.toggle input:focus-visible + .switch {
+  outline: 2px solid #4c9aff;
+  outline-offset: 2px;
+}
+
+.toggle-text strong {
+  display: block;
+  font-weight: 600;
+}
+
+.toggle-text small {
+  display: block;
+  margin-top: 2px;
+  color: #9aa4b0;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.refresh {
+  width: 100%;
+  margin-top: 8px;
+  padding: 8px 10px;
+  border: 1px solid #3a444f;
+  border-radius: 8px;
+  background: #2c333c;
+  color: #e8ecf1;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.refresh:hover {
+  background: #39424d;
+  border-color: #4c5763;
+}
+
+.refresh:active {
+  background: #232930;
+}
+
+.refresh:focus-visible {
+  outline: 2px solid #4c9aff;
+  outline-offset: 2px;
+}
+
+.refresh[disabled] {
+  opacity: 0.6;
+  cursor: default;
+}

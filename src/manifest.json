@@ -1,8 +1,15 @@
 {
   "manifest_version": 3,
-  "name": "UWorld Score vs Average",
-  "version": "1.0.0",
-  "description": "Compares your test-result score with the average percent correct for other UWorld users, and restores Ctrl+F, text selection and copy.",
+  "name": "UWorld Enhancements",
+  "version": "1.1.0",
+  "description": "Peer-average score marker, result-colored question review navigation, and restored Ctrl+F, text selection and copy for UWorld.",
+  "permissions": [
+    "storage"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "UWorld Enhancements"
+  },
   "content_scripts": [
     {
       "matches": [
@@ -10,6 +17,7 @@
         "https://*.uworld.com/*"
       ],
       "js": [
+        "features.js",
         "find-unblock.js"
       ],
       "run_at": "document_start",
@@ -21,6 +29,7 @@
         "https://*.uworld.com/*"
       ],
       "js": [
+        "features.js",
         "content.js"
       ],
       "css": [
@@ -34,6 +43,7 @@
         "https://*.uworld.com/*"
       ],
       "js": [
+        "features.js",
         "review-nav.js"
       ],
       "run_at": "document_idle"

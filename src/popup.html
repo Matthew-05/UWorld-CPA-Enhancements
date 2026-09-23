@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>UWorld Enhancements</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <h1>UWorld Enhancements</h1>
+    <p>Toggle each modification on or off.</p>
+  </header>
+
+  <label class="toggle">
+    <input type="checkbox" id="featureScoreMarker">
+    <span class="switch" aria-hidden="true"></span>
+    <span class="toggle-text">
+      <strong>Score vs peers marker</strong>
+      <small>Average of the % Correct Others column on the Points Scored bar.</small>
+    </span>
+  </label>
+
+  <label class="toggle">
+    <input type="checkbox" id="featureReviewNav">
+    <span class="switch" aria-hidden="true"></span>
+    <span class="toggle-text">
+      <strong>Review nav colors</strong>
+      <small>Green / orange / gray question numbers by result (Tutor mode).</small>
+    </span>
+  </label>
+
+  <label class="toggle">
+    <input type="checkbox" id="featureUnblock">
+    <span class="switch" aria-hidden="true"></span>
+    <span class="toggle-text">
+      <strong>Find, selection &amp; copy</strong>
+      <small>Restore Ctrl+F, F3, text selection, copy and right-click.</small>
+    </span>
+  </label>
+
+  <button type="button" id="refresh" class="refresh">Refresh page</button>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -6,6 +6,8 @@ A small Manifest V3 Chrome extension that improves the UWorld web app:
 2. [Question review navigation color coding](#2-question-review-navigation-color-coding)
 3. [Find, selection and copy unblock](#3-find-selection-and-copy-unblock)
 
+Each modification can be toggled on or off from the extension's popup (see [Settings](#settings)).
+
 ## Install
 
 1. Open `chrome://extensions` in Chrome.
@@ -46,3 +48,16 @@ Results are cached in `sessionStorage`, keyed by test id plus testlet number, so
 `find-unblock.js` restores browser features UWorld suppresses: native find (**Ctrl/Cmd+F**, **F3**, **Ctrl/Cmd+G**), text selection, copy and the right-click menu.
 
 It runs at `document_start` and listens on `window` in the capture phase, so it sees keyboard and selection events before UWorld's own handlers and stops them from cancelling those events. It never calls `preventDefault()` itself, so Chrome's find bar opens normally. It also injects a `user-select: text` stylesheet to undo the CSS-level selection block.
+
+## Settings
+
+Click the extension icon to open the popup, which has a toggle for each modification:
+
+- **Score vs peers marker** (`featureScoreMarker`) — `content.js`
+- **Review nav colors** (`featureReviewNav`) — `review-nav.js`
+- **Find, selection & copy** (`featureUnblock`) — `find-unblock.js`
+
+Toggles are stored in `chrome.storage.sync` and applied live: each content script reads its flag on load and listens for `chrome.storage.onChanged`, so flipping a switch enables or reverts the change without a page reload. When a feature is disabled it tears down its observers/listeners, removes any injected elements and styles, and (for the nav) clears its classes. All flags default to on.
+
+The popup also has a **Refresh page** button that reloads the active tab and closes the popup.
+

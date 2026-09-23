@@ -59,13 +59,8 @@
 
   if (typeof window === 'undefined' || typeof document === 'undefined') return;
 
-  for (const type of KEY_EVENTS) {
-    window.addEventListener(type, guardKeys, true);
-  }
-
-  for (const type of PASSTHROUGH_EVENTS) {
-    window.addEventListener(type, releaseEvent, true);
-  }
+  const FEATURE = 'featureUnblock';
+  let started = false;
 
   // Undo `user-select: none` and similar CSS-level blocks. Injected as its own
   // stylesheet at document_start so it applies before first paint.
@@ -86,8 +81,33 @@
     (document.head || document.documentElement).appendChild(style);
   };
 
-  applySelectionStyles();
-  if (!document.head) {
-    document.addEventListener('DOMContentLoaded', applySelectionStyles, { once: true });
+  const onReady = () => applySelectionStyles();
+
+  const start = () => {
+    if (started) return;
+    started = true;
+    for (const type of KEY_EVENTS) window.addEventListener(type, guardKeys, true);
+    for (const type of PASSTHROUGH_EVENTS) window.addEventListener(type, releaseEvent, true);
+    applySelectionStyles();
+    if (!document.head) {
+      document.addEventListener('DOMContentLoaded', onReady, { once: true });
+    }
+  };
+
+  const stop = () => {
+    if (!started) return;
+    started = false;
+    for (const type of KEY_EVENTS) window.removeEventListener(type, guardKeys, true);
+    for (const type of PASSTHROUGH_EVENTS) window.removeEventListener(type, releaseEvent, true);
+    document.removeEventListener('DOMContentLoaded', onReady);
+    document.getElementById('uworld-find-unblock-style')?.remove();
+  };
+
+  // Start optimistically so the capture listeners are registered before the
+  // page's own handlers, then honour the stored toggle once it resolves.
+  start();
+  const features = window.UWFeatures;
+  if (features && typeof features.watch === 'function') {
+    features.watch(FEATURE, (enabled) => (enabled ? start() : stop()));
   }
 })();

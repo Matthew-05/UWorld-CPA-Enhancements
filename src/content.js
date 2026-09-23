@@ -197,21 +197,48 @@
 
   if (typeof document === 'undefined') return;
 
+  const FEATURE = 'featureScoreMarker';
   let timer = null;
+  let observer = null;
+  let running = false;
+
   const scheduleRender = () => {
     clearTimeout(timer);
     timer = setTimeout(render, 200);
   };
 
-  render();
+  const onNavigate = () => scheduleRender();
 
-  const observer = new MutationObserver(scheduleRender);
-  observer.observe(document.documentElement, {
-    childList: true,
-    subtree: true,
-    characterData: true
-  });
+  const start = () => {
+    if (running) return;
+    running = true;
+    render();
+    observer = new MutationObserver(scheduleRender);
+    observer.observe(document.documentElement, {
+      childList: true,
+      subtree: true,
+      characterData: true
+    });
+    window.addEventListener('hashchange', onNavigate);
+    window.addEventListener('popstate', onNavigate);
+  };
 
-  window.addEventListener('hashchange', scheduleRender);
-  window.addEventListener('popstate', scheduleRender);
+  const stop = () => {
+    if (!running) return;
+    running = false;
+    clearTimeout(timer);
+    observer?.disconnect();
+    observer = null;
+    window.removeEventListener('hashchange', onNavigate);
+    window.removeEventListener('popstate', onNavigate);
+    removeInjectedContent();
+    lastSignature = '';
+  };
+
+  const features = window.UWFeatures;
+  if (features && typeof features.watch === 'function') {
+    features.watch(FEATURE, (enabled) => (enabled ? start() : stop()));
+  } else {
+    start();
+  }
 })();
