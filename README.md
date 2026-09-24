@@ -1,7 +1,7 @@
-# UWorld Enhancements
+# UWorld CPA Enhancements (Unofficial)
 
 A small Manifest V3 Chrome extension that adds quality-of-life improvements to the
-[UWorld](https://www.uworld.com) web app. Unofficial — not affiliated with or endorsed by UWorld.
+[UWorld](https://www.uworld.com) CPA web app. Unofficial — not affiliated with or endorsed by UWorld.
 
 ## Features
 
@@ -90,6 +90,17 @@ npm test
 node src/content.test.cjs
 ```
 
+## Packaging for the Chrome Web Store
+
+```sh
+npm run build
+```
+
+This zips the contents of `src/` (minus tests) with `manifest.json` at the ZIP
+root and writes `dist/uworld-cpa-enhancements-<version>.zip`, which is what you
+upload to the Chrome Web Store. Regenerate store screenshots with
+`npm run screenshots`; the listing copy and privacy policy are in `store/`.
+
 ## Project layout
 
 ```
@@ -104,6 +115,9 @@ node src/content.test.cjs
 │   ├── popup.html/.css/.js
 │   ├── icons/
 │   └── content.test.cjs  # parser tests
+├── scripts/              # build.ps1 (store zip), screenshots.ps1
+├── store/                # listing.md, privacy-policy.md, screenshots/
+├── images/               # raw feature screenshots
 ├── LICENSE
 └── README.md
 ```

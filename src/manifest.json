@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "UWorld Enhancements",
+  "name": "UWorld CPA Enhancements (Unofficial)",
   "version": "0.1.0",
-  "description": "Peer-average score marker, result-colored question review navigation, and restored Ctrl+F, text selection and copy for UWorld.",
+  "description": "Peer-average score marker, result-colored review navigation, and restored find, selection and copy for the UWorld CPA web app.",
   "permissions": [
     "storage"
   ],
@@ -14,7 +14,7 @@
   },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "UWorld Enhancements",
+    "default_title": "UWorld CPA Enhancements",
     "default_icon": {
       "16": "icons/icon16.png",
       "32": "icons/icon32.png",
